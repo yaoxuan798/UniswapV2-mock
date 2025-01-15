@@ -1,0 +1,21 @@
+{
+  "name": "uniswapv2-mock",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build:contracts": "yarn workspace contracts compile",
+    "deploy:contracts": "yarn workspace contracts deploy",
+    "dev:frontend": "yarn workspace frontend dev",
+    "build:frontend": "yarn workspace frontend build",
+    "export:frontend": "yarn workspace frontend export"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@types/dotenv": "^8.2.3",
+    "dotenv": "^16.4.7"
+  }
+}
