@@ -25,10 +25,8 @@ jobs:
         run: yarn install
         working-directory: ./frontend
 
-      - name: Build and Export
-        run: |
-          yarn build
-          yarn export
+      - name: Build
+        run: yarn build
         working-directory: ./frontend
 
       - name: List directory (for debugging)
