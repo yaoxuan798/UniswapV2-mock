@@ -1,11 +1,9 @@
-# .github/workflows/deploy.yml
-
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main  # 监听 main 分支的推送
 
 permissions:
   contents: write  # 允许 Actions 写入仓库内容
@@ -27,12 +25,18 @@ jobs:
         run: yarn install
         working-directory: ./frontend
 
-      - name: Build
-        run: yarn build
+      - name: Build and Export
+        run: |
+          yarn build
+          yarn export
         working-directory: ./frontend
 
-      - name: Deploy
+      - name: List directory (for debugging)
+        run: ls -alh ./frontend/out  # 确保 out 目录存在并包含构建文件
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./frontend/out
+          publish_branch: gh-pages  # 指定发布到 gh-pages 分支
